@@ -1,0 +1,11 @@
+---
+- name: copy zabagent tar file to remote server
+  unarchive:
+   src: zabagent.tar
+   dest: /tmp
+   owner: root
+   group: root
+   mode: 0755
+   list_files: yes
+
+

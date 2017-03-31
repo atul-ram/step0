@@ -1,0 +1,12 @@
+---
+
+create_users:
+  - user: oper
+    comment: 'oper service account'
+    pass: "z@bb1xhijkill"
+    state: present
+    sudo: true
+
+Hostname:
+ZabbixServerList:
+- { group: TcsZone, addresses: 10.17.14.103,10.17.14.104 }
