@@ -60,8 +60,9 @@
     - "{{ FileList }}"
 
 - name: copy and edit conf file as per input vars
+  tags: t
   template:
-    src: template/zabbix_agentd.conf.j2
+    src: templates/zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
     owner: zabbix
     group: zabbix

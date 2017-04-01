@@ -8,8 +8,10 @@ create_users:
     sudo: true
 
 Hostname: worker1
-ZabbixServerList:
-- { group: TcsZone, addresses: 10.17.14.103,10.17.14.104 }
+
+ServerList: 10.17.14.103,10.17.14.104
+ActiveServerList: 10.17.14.103,10.17.14.104
+
 FileList:
 - { file: zabbix_sender, dest: /usr/local/sbin/zabbix_sender }
 - { file: zabbix_agent, dest: /usr/local/sbin/zabbix_agent }
