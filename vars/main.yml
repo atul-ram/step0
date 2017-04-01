@@ -7,7 +7,7 @@ create_users:
     state: present
     sudo: true
 
-Hostname:
+Hostname: worker1
 ZabbixServerList:
 - { group: TcsZone, addresses: 10.17.14.103,10.17.14.104 }
 FileList:

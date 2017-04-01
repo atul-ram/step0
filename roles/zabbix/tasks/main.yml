@@ -59,3 +59,19 @@
   with_items:
     - "{{ FileList }}"
 
+- name: copy and edit conf file as per input vars
+  template:
+    src: template/zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0644
+
+- name: Add entry to /etc/rc.local
+  lineinfile:
+    path: /etc/rc.local
+    line: '/usr/local/bin/zabagentstart'
+
+- name: Start zabbix
+  command: '/usr/local/sbin/zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf'
+
