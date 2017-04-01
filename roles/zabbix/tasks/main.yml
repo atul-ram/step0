@@ -1,3 +1,61 @@
 ---
-- include: step0.yml
-- include: step1.yml
+- name: install sysstat rpm
+  yum:
+    name: sysstat
+    state: present
+  register: result
+
+- name: start dependent service 
+  service:
+    name: sysstat
+    enabled: yes
+    state: started
+
+- name: users | managing user accounts
+  user:
+    name: "{{ item.user }}"
+    password: "{{ item.pass |password_hash('sha512') }}"
+    shell: "{{ item.shell|default (omit) }}"
+    comment: "{{ item.comment|default (omit) }}"
+    generate_ssh_key: "{{ item.generate_keys|default (omit) }}"
+    system: "{{ item.system_account|default (omit) }}"
+    state: "{{ item.state }}"
+  with_items: '{{ create_users }}'
+
+
+- name: users | adding users to sudoers
+  lineinfile:
+    dest: "/etc/sudoers"
+    regexp: '^{{ item.user }} ALL'
+    insertafter: "^root"
+    line: '{{ item.user }}  ALL= NOPASSWD : /usr/bin/tailf, /bin/cat, /bin/grep,/bin/awk, /bin/sed, /usr/local/sbin/zabbix_sender, /usr/bin/tr,  /usr/sbin/dmidecode, /usr/bin/lsattr, /bin/ls'
+    validate: 'visudo -cf %s'
+    state: present
+  with_items: '{{ create_users }}'
+  when: >
+        item.state == "present" and
+        item.sudo
+
+- name: command to extend password aging of zabbix user
+  raw: chage -I -1 -m 0 -M 99999 -E -1 zabbix
+
+- name: copy scripts to /etc/zabbix folder
+  copy:
+    src: files/script
+    dest: /etc/zabbix/
+    backup: yes
+    owner: zabbix
+    group: zabbix
+    mode: 0755
+
+- name: copy executables to /usr/local/sbin/ folder
+  copy:
+    src: files/executables/{{ item.file }}
+    dest: "{{ item.dest }}"
+    backup: yes
+    owner: zabbix
+    group: zabbix
+    mode: 0755
+  with_items:
+    - "{{ FileList }}"
+

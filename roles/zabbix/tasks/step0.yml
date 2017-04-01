@@ -27,8 +27,9 @@
   lineinfile:
     dest: "/etc/sudoers"
     regexp: '^{{ item.user }} ALL'
-	insertafter="^root"
-    line: '{{ item.user }} ALL=(ALL) NOPASSWD: /usr/bin/tailf, /bin/cat, /bin/grep,/bin/awk, /bin/sed, /usr/local/sbin/zabbix_sender, /usr/bin/tr,  /usr/sbin/dmidecode, /usr/bin/lsattr, /bin/ls'
+    insertafter="^root"
+   #line: '{{ item.user }} ALL=(ALL) NOPASSWD: /usr/bin/tailf, /bin/cat, /bin/grep,/bin/awk, /bin/sed, /usr/local/sbin/zabbix_sender, /usr/bin/tr,  /usr/sbin/dmidecode, /usr/bin/lsattr, /bin/ls'
+    line: '{{ item.user }} ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
     state: present
   with_items: '{{ create_users }}'

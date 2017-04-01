@@ -1,4 +1,5 @@
-- name: Step2
+---
+- name: zabbix installation  playbook
   hosts: all
   gather_facts: no
   remote_user: sshadmin
@@ -6,15 +7,5 @@
   become_user: root
   vars_files:
     - vars/main.yml
-
-  tasks:
-
-  - name: copy scripts to /etc/zabbix folder
-    copy:
-      src: files/script
-      dest: /etc/zabbix/
-      backup: yes
-      owner: root
-      group: root
-      mode: 0755
-
+  roles:
+    - zabbix
