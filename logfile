@@ -1,0 +1,51 @@
+2017-04-01 11:09:34,434 p=1911 u=root |  Using /root/step0/ansible.cfg as config file
+2017-04-01 11:09:34,545 p=1911 u=root |  ERROR! Syntax Error while loading YAML.
+
+
+The error appears to have been in '/root/step0/ping.yml': line 13, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+        src: files/script
+  	dest: /etc/zabbix/script
+  ^ here
+
+2017-04-01 11:16:39,146 p=1963 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:16:39,935 p=1963 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:16:40,666 p=1963 u=root |  fatal: [localhost]: UNREACHABLE! => {"changed": false, "msg": "SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue", "unreachable": true}
+2017-04-01 11:16:40,670 p=1963 u=root |  	to retry, use: --limit @example1.retry
+
+2017-04-01 11:16:40,671 p=1963 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:16:40,672 p=1963 u=root |  localhost                  : ok=0    changed=0    unreachable=1    failed=0   
+2017-04-01 11:17:44,894 p=2084 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:17:45,025 p=2084 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:17:54,312 p=2084 u=root |  changed: [localhost]
+2017-04-01 11:17:54,324 p=2084 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:17:54,326 p=2084 u=root |  localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+2017-04-01 11:18:23,147 p=2268 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:18:23,276 p=2268 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:18:32,278 p=2268 u=root |  changed: [localhost]
+2017-04-01 11:18:32,288 p=2268 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:18:32,290 p=2268 u=root |  localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+2017-04-01 11:19:05,404 p=2447 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:19:05,521 p=2447 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:19:07,895 p=2447 u=root |  fatal: [localhost]: FAILED! => {"changed": false, "checksum": "1d77fd4a9b2231061dd687bdce5e59df2d9f2b8c", "failed": true, "module_stderr": "", "module_stdout": "sudo: a password is required\r\n", "msg": "MODULE FAILURE", "parsed": false}
+2017-04-01 11:19:07,898 p=2447 u=root |  NO MORE HOSTS LEFT *************************************************************
+2017-04-01 11:19:07,902 p=2447 u=root |  	to retry, use: --limit @example1.retry
+
+2017-04-01 11:19:07,903 p=2447 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:19:07,903 p=2447 u=root |  localhost                  : ok=0    changed=0    unreachable=0    failed=1   
+2017-04-01 11:23:07,204 p=2626 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:23:07,334 p=2626 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:23:44,154 p=2626 u=root |  changed: [localhost]
+2017-04-01 11:23:44,163 p=2626 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:23:44,164 p=2626 u=root |  localhost                  : ok=1    changed=1    unreachable=0    failed=0   
+2017-04-01 11:25:14,161 p=3600 u=root |  Using /root/step0/ansible.cfg as config file
+2017-04-01 11:25:14,456 p=3600 u=root |  1 plays in example1.yml
+2017-04-01 11:25:14,502 p=3600 u=root |  PLAY [Step2] *******************************************************************
+2017-04-01 11:25:14,637 p=3600 u=root |  TASK [copy scripts to /etc/zabbix folder] **************************************
+2017-04-01 11:25:14,637 p=3600 u=root |  task path: /root/step0/example1.yml:12
+2017-04-01 11:25:51,377 p=3600 u=root |  changed: [localhost] => {"changed": true, "dest": "/etc/zabbix/", "invocation": {"module_args": {"backup": true, "dest": "/etc/zabbix/", "group": "root", "mode": 493, "owner": "root", "src": "files/script"}, "module_name": "copy"}, "src": "/root/step0/files/script"}
+2017-04-01 11:25:51,386 p=3600 u=root |  PLAY RECAP *********************************************************************
+2017-04-01 11:25:51,387 p=3600 u=root |  localhost                  : ok=1    changed=1    unreachable=0    failed=0   
