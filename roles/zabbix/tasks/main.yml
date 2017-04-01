@@ -70,7 +70,7 @@
 
 - name: Add entry to /etc/rc.local
   lineinfile:
-    path: /etc/rc.local
+    destfile: /etc/rc.local
     line: '/usr/local/bin/zabagentstart'
 
 - name: Start zabbix
