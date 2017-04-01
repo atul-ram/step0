@@ -1,2 +1,3 @@
-./zabbix/* 
-./example1.retry 
+zabbix/* 
+example1.retry 
+logfile

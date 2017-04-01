@@ -1,2 +1,0 @@
-/usr/local/sbin/zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf
-echo "Zabbix agent started"
