@@ -1,0 +1,3 @@
+killall -9 zabbix_agentd
+echo "Zabbix agent stopped" 
+

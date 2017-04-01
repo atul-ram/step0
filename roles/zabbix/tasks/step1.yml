@@ -1,0 +1,10 @@
+---
+ - name: copy scripts to /etc/zabbix folder
+   copy:
+     src: files/script
+     dest: /etc/zabbix/
+     backup: yes
+     owner: root
+     group: root
+     mode: 0755
+
