@@ -1,4 +1,2 @@
 ./zabbix/* 
-./zabagent.tar 
-./logfile 
 ./example1.retry 
