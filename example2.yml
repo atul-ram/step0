@@ -1,0 +1,9 @@
+---
+- name: zabbix installation  playbook
+  hosts: "{{ target }}"
+  gather_facts: no
+  remote_user: sshadmin
+  become: true
+  become_user: root
+  roles:
+    - zabbix
